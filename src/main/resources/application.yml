@@ -1,0 +1,40 @@
+## based on example application.yml -> https://github.com/spring-projects/spring-boot/blob/master/docs/application.yml
+
+spring:
+   application.name: word
+   profiles.active: development
+   main:
+     web-environment: true
+
+---
+
+spring:
+  profiles: development
+
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog
+    username: root
+    password: root
+  
+  jpa:
+     show-sql: true
+     hibernate:
+       ddl-auto: update
+       
+---
+
+spring:
+  profiles: test
+
+  datasource:
+    driverClassName: org.hsqldb.jdbc.JDBCDriver
+    url: jdbc:hsqldb:mem:blog
+    username: sa
+    password:
+  
+  jpa:
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update

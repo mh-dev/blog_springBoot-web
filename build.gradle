@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "http://repo.spring.io/libs-snapshot" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RC1")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+version = '1.0'
+group = 'mh.dev.blog'
+description = 'bootstrap-spring-boot'
+
+war {
+    baseName = 'hello'
+    version =  '0.1.0'
+}
+
+project.ext {
+	springBootVersion = '1.0.0.RC1'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+	compile("org.apache.commons:commons-lang3:3.2.1")
+	compile("com.google.guava:guava:16.0.1")
+    compile("org.yaml:snakeyaml:1.13")
+    compile("mysql:mysql-connector-java:5.1.28")
+	
+	testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+	testCompile("org.hsqldb:hsqldb:2.3.1")
+	testCompile("junit:junit:4.11")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.10'
+}
